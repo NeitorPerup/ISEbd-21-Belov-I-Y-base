@@ -122,24 +122,24 @@ namespace lab_1
             // теперь рисуем всякие приколюхи(труба + что-то рядом с ней)
 
             Brush brDopColor = new SolidBrush(DopColor);
-            PointF[] tubePoints = {new PointF(_startPosX + 115, _startPosY + 5), new PointF(_startPosX + 111, _startPosY - 10),
-                             new PointF(_startPosX + 122, _startPosY - 13), new PointF(_startPosX + 126, _startPosY + 5) };
+            PointF[] tubePoints = {new PointF(_startPosX + 115, _startPosY + 5), new PointF(_startPosX + 108, _startPosY - 12),
+                             new PointF(_startPosX + 126, _startPosY - 18), new PointF(_startPosX + 133, _startPosY + 5) };
             g.FillPolygon(brDopColor, tubePoints);
 
             if (Addition)
             {
-                PointF[] expansionPoints = { new PointF(_startPosX + 113, _startPosY), new PointF(_startPosX + 103, _startPosY),
-                                         new PointF(_startPosX + 103, _startPosY + 5), new PointF(_startPosX + 115, _startPosY + 5)};
+                PointF[] expansionPoints = { new PointF(_startPosX + 110, _startPosY), new PointF(_startPosX + 100, _startPosY),
+                                         new PointF(_startPosX + 100, _startPosY + 7), new PointF(_startPosX + 110, _startPosY + 7)};
                 g.FillPolygon(brDopColor, expansionPoints);
 
-                PointF[] annexPoints = { new PointF(_startPosX + 125, _startPosY - 4), new PointF(_startPosX + 145, _startPosY - 4),
-                                         new PointF(_startPosX + 145, _startPosY + 5), new PointF(_startPosX + 127, _startPosY + 5)};
+                PointF[] annexPoints = { new PointF(_startPosX + 135, _startPosY - 6), new PointF(_startPosX + 155, _startPosY - 6),
+                                         new PointF(_startPosX + 155, _startPosY + 5), new PointF(_startPosX + 135, _startPosY + 5)};
                 g.FillPolygon(brDopColor, annexPoints);
             }
             if (Antenna)
             {
-                g.FillRectangle(brDopColor, _startPosX + 70, _startPosY, 12, 5);
-                g.FillRectangle(brDopColor, _startPosX + 78, _startPosY - 13, 2 , 13);
+                g.FillRectangle(brDopColor, _startPosX + 70, _startPosY, 15, 7);
+                g.FillRectangle(brDopColor, _startPosX + 81, _startPosY - 15, 2 , 15);
             }
         }
     }

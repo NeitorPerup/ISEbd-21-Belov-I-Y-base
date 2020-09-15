@@ -47,6 +47,7 @@
             this.pictureBoxWarship.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxWarship.TabIndex = 0;
             this.pictureBoxWarship.TabStop = false;
+            this.pictureBoxWarship.Click += new System.EventHandler(this.PictureBoxWarship_Click);
             // 
             // buttonCreate
             // 

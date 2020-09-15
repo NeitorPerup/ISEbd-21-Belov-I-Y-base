@@ -27,8 +27,8 @@ namespace lab_1
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            warship = new Warship(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Green,
-            Color.Black, true, true);
+            warship = new Warship(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Gold,
+            Color.Coral, true, true);
             warship.SetPosition(rnd.Next(50, 120), rnd.Next(50, 120), pictureBoxWarship.Width,
             pictureBoxWarship.Height);
             Draw();
@@ -53,6 +53,11 @@ namespace lab_1
                     break;
             }
             Draw();
+        }
+
+        private void PictureBoxWarship_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
