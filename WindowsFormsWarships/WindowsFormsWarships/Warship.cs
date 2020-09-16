@@ -68,7 +68,7 @@ namespace lab_1
                     break;
                 //влево
                 case Direction.Left:
-                    if (_startPosX - step > 0)
+                    if (_startPosX - step > 1)
                     {
                         _startPosX -= step;
                     }
