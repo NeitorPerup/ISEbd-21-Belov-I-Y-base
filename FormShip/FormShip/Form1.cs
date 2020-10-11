@@ -31,7 +31,13 @@ namespace FormShip
             InitializeComponent();
         }
 
-        private void Draw()
+        public void SetShip(ITransport ship)
+        {
+            this.ship = ship;
+            Draw();
+        }
+
+            private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height);
             Graphics gr = Graphics.FromImage(bmp);
