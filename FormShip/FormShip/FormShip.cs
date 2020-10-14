@@ -37,7 +37,7 @@ namespace FormShip
             Draw();
         }
 
-            private void Draw()
+        private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height);
             Graphics gr = Graphics.FromImage(bmp);
@@ -54,7 +54,7 @@ namespace FormShip
             Draw();
         }
 
-        private void buttonCreateSportLinkor_Click(object sender, EventArgs e)
+        private void buttonCreateLinkor_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
             ship = new Linkor(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue,
@@ -126,7 +126,7 @@ namespace FormShip
             this.buttonCreateLinkor.TabIndex = 2;
             this.buttonCreateLinkor.Text = "Военный корабль";
             this.buttonCreateLinkor.UseVisualStyleBackColor = true;
-            this.buttonCreateLinkor.Click += new System.EventHandler(this.buttonCreateSportLinkor_Click);
+            this.buttonCreateLinkor.Click += new System.EventHandler(this.buttonCreateLinkor_Click);
             // 
             // buttonUp
             // 

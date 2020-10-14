@@ -32,12 +32,7 @@ namespace FormShip
             base.DrawTransport(g);
             Pen pen = new Pen(Color.Black);
             Brush brDopColor = new SolidBrush(DopColor);
-            if (Tube)
-            {
-                PointF[] tubePoints = {new PointF(_startPosX + 115, _startPosY + 5), new PointF(_startPosX + 108, _startPosY - 12),
-                             new PointF(_startPosX + 126, _startPosY - 18), new PointF(_startPosX + 133, _startPosY + 5) };
-                g.FillPolygon(brDopColor, tubePoints);
-            }
+
 
             if (Antenna)
             {

@@ -28,6 +28,7 @@ namespace FormShip
             this.shipWidth = shipWidth;
             this.shipHeight = shipHeight;
         }
+
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
