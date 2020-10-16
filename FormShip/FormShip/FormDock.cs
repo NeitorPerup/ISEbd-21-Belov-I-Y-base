@@ -12,22 +12,70 @@ namespace FormShip
 {
     public partial class FormDock : Form
     {
-        private readonly Dock<Warship> dock;
+        private readonly DockCollection dockCollection;
 
         public FormDock()
         {
             InitializeComponent();
-            dock = new Dock<Warship>(pictureBoxDock.Width,
-                pictureBoxDock.Height);
+            dockCollection = new DockCollection(pictureBoxDock.Width, pictureBoxDock.Height);
             Draw();
+        }
+
+        private void ReloadLevels()
+        {
+            int index = listBoxDock.SelectedIndex;
+            listBoxDock.Items.Clear();
+            for (int i = 0; i < dockCollection.Keys.Count; i++)
+            {
+                listBoxDock.Items.Add(dockCollection.Keys[i]);
+            }
+            if (listBoxDock.Items.Count > 0 && (index == -1 || index >=
+            listBoxDock.Items.Count))
+            {
+                listBoxDock.SelectedIndex = 0;
+            }
+            else if (listBoxDock.Items.Count > 0 && index > -1 && index <
+            listBoxDock.Items.Count)
+            {
+                listBoxDock.SelectedIndex = index;
+            }
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxDock.Width, pictureBoxDock.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            dock.Draw(gr);
-            pictureBoxDock.Image = bmp;
+            if (listBoxDock.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxDock.Width, pictureBoxDock.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                dockCollection[listBoxDock.SelectedItem.ToString()].Draw(gr);
+                pictureBoxDock.Image = bmp;
+            }
+        }
+
+        private void buttonAddDock_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
+            {
+                MessageBox.Show("Введите название дока", "Ошибка",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            dockCollection.AddDock(textBoxNewLevelName.Text);
+            textBoxNewLevelName.Text = "";
+            ReloadLevels();
+        }
+
+        private void buttonDelDock_Click(object sender, EventArgs e)
+        {
+            if (listBoxDock.SelectedIndex > -1)
+            {
+                if (MessageBox.Show($"Удалить док { listBoxDock.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question) == DialogResult.Yes)
+{
+                    dockCollection.DelDock(listBoxDock.Text);
+                    ReloadLevels();
+                }
+            }
         }
 
         private void buttonSetShip_Click(object sender, EventArgs e)
@@ -36,7 +84,7 @@ namespace FormShip
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var warship = new Warship(100, 1000, dialog.Color);
-                if (dock + warship)
+                if (dockCollection[listBoxDock.SelectedItem.ToString()] + warship)
                 {
                     Draw();
                 }
@@ -47,23 +95,26 @@ namespace FormShip
             }
         }
 
-        private void buttonSetSportWarship_Click(object sender, EventArgs e)
+        private void buttonSetWarship_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxDock.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    var linkor = new Linkor(100, 1000, dialog.Color, dialogDop.Color,
-                    true, true, true);
-                    if (dock + linkor)
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
                     {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Не пришвартовано =)");
+                        var linkor = new Linkor(100, 1000, dialog.Color, dialogDop.Color,
+                        true, true, true);
+                        if (dockCollection[listBoxDock.SelectedItem.ToString()] + linkor)
+                        {
+                            Draw();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не пришвартовано =)");
+                        }
                     }
                 }
             }
@@ -71,17 +122,25 @@ namespace FormShip
 
         private void buttonUndock_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox.Text != "")
+            if (listBoxDock.SelectedIndex > -1 && maskedTextBox.Text != "")
             {
-                var ship = dock - Convert.ToInt32(maskedTextBox.Text);
-                if (ship != null)
+                if (maskedTextBox.Text != "")
                 {
-                    FormShip form = new FormShip();
-                    form.SetShip(ship);
-                    form.ShowDialog();
+                    var ship = dockCollection[listBoxDock.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBox.Text);
+                    if (ship != null)
+                    {
+                        FormShip form = new FormShip();
+                        form.SetShip(ship);
+                        form.ShowDialog();
+                    }
+                    Draw();
                 }
-                Draw();
             }
+        }
+
+        private void listBoxDock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }
