@@ -43,7 +43,7 @@ namespace FormShip
 
         public static T operator -(Dock<T> d, int index)
         {
-            if (index < -1 || index > d._places.Count)
+            if (index <= -1 || index >= d._places.Count)
             {
                 return null;
             }

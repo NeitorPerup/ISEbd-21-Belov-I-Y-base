@@ -44,7 +44,14 @@ namespace FormShip
         {
             get
             {
-                return dockStages[ind];
+                if (dockStages.ContainsKey(ind))
+                {
+                    return dockStages[ind];
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
     }
