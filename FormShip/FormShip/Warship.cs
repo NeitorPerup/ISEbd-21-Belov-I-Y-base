@@ -2,109 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace FormShip
 {
-    public class Warship : Vehicle
+    public class Warship : Ship
     {
-        protected readonly int shipWidth = 90;
+        public Color DopColor { private set; get; }
 
-        protected readonly int shipHeight = 50;
+        public bool Antenna { private set; get; }
 
-        public Warship(int maxSpeed, float weight, Color mainColor)
+        public bool Cannon { private set; get; }
+
+        public bool DopBuilding { private set; get; }
+
+        public Warship(int maxSpeed, float weight, Color mainColor, Color dopColor,
+            bool antenna, bool cannon, bool dopBuilding) :
+            base(maxSpeed, weight, mainColor, 100, 60)
         {
-            MaxSpeed = maxSpeed;
-            Weight = weight;
-            MainColor = mainColor;
+            DopColor = dopColor;
+            Antenna = antenna;
+            Cannon = cannon;
+            DopBuilding = dopBuilding;
         }
 
-        protected Warship(int maxSpeed, float weight, Color mainColor, int shipWidth, int shipHeight)
+        public void SetDopColor(Color color)
         {
-            MaxSpeed = maxSpeed;
-            Weight = weight;
-            MainColor = mainColor;
-            this.shipWidth = shipWidth;
-            this.shipHeight = shipHeight;
+            DopColor = color;
         }
 
-        public override void MoveTransport(Direction direction)
-        {
-            float step = MaxSpeed * 100 / Weight;
-            switch (direction)
-            {
-                // вправо
-                case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - WarshipWidth)
-                    {
-                        _startPosX += step;
-                    }
-                    break;
-                //влево
-                case Direction.Left:
-                    if (_startPosX - step > 0)
-                    {
-                        _startPosX -= step;
-                    }
-                    break;
-                //вверх
-                case Direction.Up:
-                    if (_startPosY - step - WarshipHeightUp > 0)
-                    {
-                        _startPosY -= step;
-                    }
-                    break;
-                //вниз
-                case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - WarshipHeightDown)
-                    {
-                        _startPosY += step;
-                    }
-                    break;
-            }
-        }
         public override void DrawTransport(Graphics g)
         {
+            base.DrawTransport(g);
             Pen pen = new Pen(Color.Black);
+            Brush brDopColor = new SolidBrush(DopColor);
 
-            g.DrawLine(pen, _startPosX, _startPosY + 15, _startPosX + 40, _startPosY + 35);
-            g.DrawLine(pen, _startPosX + 40, _startPosY + 35, _startPosX + 190, _startPosY + 35);
-            g.DrawLine(pen, _startPosX + 190, _startPosY + 35, _startPosX + 210, _startPosY + 15);
-            g.DrawLine(pen, _startPosX + 210, _startPosY + 15, _startPosX, _startPosY + 15);
+            if (DopBuilding)
+            {
+                g.FillRectangle(brDopColor, _startPosX + 70, _startPosY, 15, 7);
+            }
 
-            Brush brMainColor = new SolidBrush(MainColor);
-            PointF p1 = new PointF(_startPosX, _startPosY + 15);
-            PointF p2 = new PointF(_startPosX + 40, _startPosY + 35);
-            PointF p3 = new PointF(_startPosX + 190, _startPosY + 35);
-            PointF p4 = new PointF(_startPosX + 210, _startPosY + 15);
-            PointF[] points = { p1, p2, p3, p4 };
-            g.FillPolygon(brMainColor, points);
+            if (Antenna)
+            {               
+                g.FillRectangle(brDopColor, _startPosX + 81, _startPosY - 15, 2, 20);
+            }
 
-            // рисуем серую часть корабля
-            g.DrawLine(pen, _startPosX, _startPosY + 15, _startPosX + 10, _startPosY + 5);
-            g.DrawLine(pen, _startPosX + 10, _startPosY + 5, _startPosX + 218, _startPosY + 5);
-            g.DrawLine(pen, _startPosX + 218, _startPosY + 5, _startPosX + 210, _startPosY + 15);
-            // закрашиваем
-            Brush brGray = new SolidBrush(Color.Gray);
-            PointF grp1 = new PointF(_startPosX, _startPosY + 15);
-            PointF grp2 = new PointF(_startPosX + 10, _startPosY + 5);
-            PointF grp3 = new PointF(_startPosX + 218, _startPosY + 5);
-            PointF grp4 = new PointF(_startPosX + 210, _startPosY + 15);
-            PointF[] grPoints = { grp1, grp2, grp3, grp4 };
-            g.FillPolygon(brGray, grPoints);
+            if (Cannon)
+            {
+                PointF[] cannon1Points = { new PointF(_startPosX + 165, _startPosY + 5), new PointF(_startPosX + 170, _startPosY - 7),
+                                           new PointF(_startPosX + 185, _startPosY - 7), new PointF(_startPosX + 190, _startPosY + 5) };
+                g.FillPolygon(brDopColor, cannon1Points);
+                g.FillRectangle(brDopColor, _startPosX + 180, _startPosY - 4, 20, 4);
 
-            PointF[] expansionPoints = { new PointF(_startPosX + 110, _startPosY), new PointF(_startPosX + 100, _startPosY),
-                                        new PointF(_startPosX + 100, _startPosY + 7), new PointF(_startPosX + 110, _startPosY + 7)};
-            g.FillPolygon(brMainColor, expansionPoints);
-
-            PointF[] annexPoints = { new PointF(_startPosX + 135, _startPosY - 6), new PointF(_startPosX + 155, _startPosY - 6),
-                                         new PointF(_startPosX + 155, _startPosY + 5), new PointF(_startPosX + 135, _startPosY + 5)};
-            g.FillPolygon(brMainColor, annexPoints);
-
-            PointF[] tubePoints = {new PointF(_startPosX + 115, _startPosY + 5), new PointF(_startPosX + 108, _startPosY - 12),
-                             new PointF(_startPosX + 126, _startPosY - 18), new PointF(_startPosX + 133, _startPosY + 5) };
-            g.FillPolygon(brMainColor, tubePoints);
+                PointF[] cannon2Points = { new PointF(_startPosX + 60, _startPosY + 5), new PointF(_startPosX + 55, _startPosY - 7),
+                                           new PointF(_startPosX + 45, _startPosY - 7), new PointF(_startPosX + 40, _startPosY + 5) };
+                g.FillPolygon(brDopColor, cannon2Points);
+                g.FillRectangle(brDopColor, _startPosX + 24, _startPosY - 4, 20, 4);
+            }
         }
     }
 }

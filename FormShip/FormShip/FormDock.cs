@@ -71,7 +71,7 @@ namespace FormShip
             {
                 if (MessageBox.Show($"Удалить док { listBoxDock.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
             MessageBoxIcon.Question) == DialogResult.Yes)
-{
+                {
                     dockCollection.DelDock(listBoxDock.Text);
                     ReloadLevels();
                 }
@@ -83,8 +83,8 @@ namespace FormShip
             ColorDialog dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                var warship = new Warship(100, 1000, dialog.Color);
-                if (dockCollection[listBoxDock.SelectedItem.ToString()] + warship)
+                var ship = new Ship(100, 1000, dialog.Color);
+                if (dockCollection[listBoxDock.SelectedItem.ToString()] + ship)
                 {
                     Draw();
                 }
@@ -105,7 +105,7 @@ namespace FormShip
                     ColorDialog dialogDop = new ColorDialog();
                     if (dialogDop.ShowDialog() == DialogResult.OK)
                     {
-                        var linkor = new Linkor(100, 1000, dialog.Color, dialogDop.Color,
+                        var linkor = new Warship(100, 1000, dialog.Color, dialogDop.Color,
                         true, true, true);
                         if (dockCollection[listBoxDock.SelectedItem.ToString()] + linkor)
                         {
@@ -141,6 +141,29 @@ namespace FormShip
         private void listBoxDock_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void ButtonAddShip_Click(object sender, EventArgs e)
+        {
+            var formShipConfig = new FormShipConfig();
+            //formShipConfig.AddEvent(AddShip);
+            formShipConfig.eventActionAddShip += AddShip;
+            formShipConfig.Show();
+        }
+
+        private void AddShip(Vehicle ship)
+        {
+            if (ship != null && listBoxDock.SelectedIndex > -1)
+            {
+                if ((dockCollection[listBoxDock.SelectedItem.ToString()]) + ship)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Корабль не удалось поставить");
+                }
+            }
         }
     }
 }

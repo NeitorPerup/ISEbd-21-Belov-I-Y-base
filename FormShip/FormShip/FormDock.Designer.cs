@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBoxDock = new System.Windows.Forms.PictureBox();
-            this.buttonDockShip = new System.Windows.Forms.Button();
-            this.buttonDockWarship = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.buttonUndock = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -40,6 +38,7 @@
             this.buttonDelDock = new System.Windows.Forms.Button();
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonAddShip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDock)).BeginInit();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
@@ -51,26 +50,6 @@
             this.pictureBoxDock.Size = new System.Drawing.Size(730, 448);
             this.pictureBoxDock.TabIndex = 0;
             this.pictureBoxDock.TabStop = false;
-            // 
-            // buttonDockShip
-            // 
-            this.buttonDockShip.Location = new System.Drawing.Point(740, 267);
-            this.buttonDockShip.Name = "buttonDockShip";
-            this.buttonDockShip.Size = new System.Drawing.Size(73, 49);
-            this.buttonDockShip.TabIndex = 1;
-            this.buttonDockShip.Text = "Корабль";
-            this.buttonDockShip.UseVisualStyleBackColor = true;
-            this.buttonDockShip.Click += new System.EventHandler(this.buttonSetShip_Click);
-            // 
-            // buttonDockWarship
-            // 
-            this.buttonDockWarship.Location = new System.Drawing.Point(819, 264);
-            this.buttonDockWarship.Name = "buttonDockWarship";
-            this.buttonDockWarship.Size = new System.Drawing.Size(68, 54);
-            this.buttonDockWarship.TabIndex = 2;
-            this.buttonDockWarship.Text = "Военный корабль";
-            this.buttonDockWarship.UseVisualStyleBackColor = true;
-            this.buttonDockWarship.Click += new System.EventHandler(this.buttonSetWarship_Click);
             // 
             // groupBox
             // 
@@ -155,19 +134,28 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Доки";
             // 
+            // buttonAddShip
+            // 
+            this.buttonAddShip.Location = new System.Drawing.Point(769, 253);
+            this.buttonAddShip.Name = "buttonAddShip";
+            this.buttonAddShip.Size = new System.Drawing.Size(106, 41);
+            this.buttonAddShip.TabIndex = 9;
+            this.buttonAddShip.Text = "Добавить корабль";
+            this.buttonAddShip.UseVisualStyleBackColor = true;
+            this.buttonAddShip.Click += new System.EventHandler(this.ButtonAddShip_Click);
+            // 
             // FormDock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 450);
+            this.Controls.Add(this.buttonAddShip);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.buttonDelDock);
             this.Controls.Add(this.buttonAddDock);
             this.Controls.Add(this.listBoxDock);
             this.Controls.Add(this.groupBox);
-            this.Controls.Add(this.buttonDockWarship);
-            this.Controls.Add(this.buttonDockShip);
             this.Controls.Add(this.pictureBoxDock);
             this.Name = "FormDock";
             this.Text = "Док";
@@ -182,8 +170,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxDock;
-        private System.Windows.Forms.Button buttonDockShip;
-        private System.Windows.Forms.Button buttonDockWarship;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Button buttonUndock;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
@@ -193,5 +179,6 @@
         private System.Windows.Forms.Button buttonDelDock;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonAddShip;
     }
 }

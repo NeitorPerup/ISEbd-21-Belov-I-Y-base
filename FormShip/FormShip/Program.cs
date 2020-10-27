@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace FormShip
 {
+    public delegate void ShipDelegate(Vehicle ship);
+
     static class Program
     {
         /// <summary>

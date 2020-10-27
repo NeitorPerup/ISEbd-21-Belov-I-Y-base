@@ -40,6 +40,11 @@ namespace FormShip
         public abstract void DrawTransport(Graphics g);
 
         public abstract void MoveTransport(Direction direction);
+
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
     }
 }
 

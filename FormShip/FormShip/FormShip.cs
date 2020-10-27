@@ -48,7 +48,7 @@ namespace FormShip
         private void buttonCreateShip_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Warship(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+            ship = new Ship(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
             ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBox.Width,
                 pictureBox.Height);
             Draw();
@@ -57,7 +57,7 @@ namespace FormShip
         private void buttonCreateLinkor_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Linkor(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue,
+            ship = new Warship(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue,
             Color.Red, true, true, true);
             ship.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBox.Width, pictureBox.Height);
             Draw();
