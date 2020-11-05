@@ -42,7 +42,6 @@
             this.pictureBoxShip = new System.Windows.Forms.PictureBox();
             this.panelShip = new System.Windows.Forms.Panel();
             this.groupBoxColors = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panelWhite = new System.Windows.Forms.Panel();
             this.panelYellow = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -241,7 +240,6 @@
             // 
             // groupBoxColors
             // 
-            this.groupBoxColors.Controls.Add(this.panel1);
             this.groupBoxColors.Controls.Add(this.panelWhite);
             this.groupBoxColors.Controls.Add(this.panelYellow);
             this.groupBoxColors.Controls.Add(this.panelFuchsia);
@@ -259,23 +257,15 @@
             this.groupBoxColors.TabStop = false;
             this.groupBoxColors.Text = "Цвета";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(168, 121);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(41, 37);
-            this.panel1.TabIndex = 5;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
-            // 
             // panelWhite
             // 
             this.panelWhite.BackColor = System.Drawing.Color.White;
+            this.panelWhite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWhite.Location = new System.Drawing.Point(168, 121);
             this.panelWhite.Name = "panelWhite";
             this.panelWhite.Size = new System.Drawing.Size(41, 37);
             this.panelWhite.TabIndex = 5;
+            
             // 
             // panelYellow
             // 
@@ -286,7 +276,7 @@
             this.panelYellow.Name = "panelYellow";
             this.panelYellow.Size = new System.Drawing.Size(41, 37);
             this.panelYellow.TabIndex = 7;
-            this.panelYellow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+
             // 
             // panel12
             // 
@@ -306,7 +296,7 @@
             this.panelFuchsia.Name = "panelFuchsia";
             this.panelFuchsia.Size = new System.Drawing.Size(41, 37);
             this.panelFuchsia.TabIndex = 8;
-            this.panelFuchsia.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            
             // 
             // panel11
             // 
@@ -345,7 +335,7 @@
             this.panelBlack.Name = "panelBlack";
             this.panelBlack.Size = new System.Drawing.Size(41, 37);
             this.panelBlack.TabIndex = 5;
-            this.panelBlack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            
             // 
             // panelGreen
             // 
@@ -355,7 +345,7 @@
             this.panelGreen.Name = "panelGreen";
             this.panelGreen.Size = new System.Drawing.Size(41, 37);
             this.panelGreen.TabIndex = 6;
-            this.panelGreen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+           
             // 
             // panelBlue
             // 
@@ -365,7 +355,7 @@
             this.panelBlue.Name = "panelBlue";
             this.panelBlue.Size = new System.Drawing.Size(41, 37);
             this.panelBlue.TabIndex = 4;
-            this.panelBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            
             // 
             // panelOrange
             // 
@@ -375,7 +365,7 @@
             this.panelOrange.Name = "panelOrange";
             this.panelOrange.Size = new System.Drawing.Size(41, 37);
             this.panelOrange.TabIndex = 3;
-            this.panelOrange.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            
             // 
             // panelRed
             // 
@@ -385,7 +375,7 @@
             this.panelRed.Name = "panelRed";
             this.panelRed.Size = new System.Drawing.Size(41, 37);
             this.panelRed.TabIndex = 2;
-            this.panelRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            
             // 
             // labelDopColor
             // 
@@ -474,7 +464,6 @@
         private System.Windows.Forms.Label labelShip;
         private System.Windows.Forms.Panel panelShip;
         private System.Windows.Forms.GroupBox groupBoxColors;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelWhite;
         private System.Windows.Forms.Panel panelYellow;
         private System.Windows.Forms.Panel panel12;

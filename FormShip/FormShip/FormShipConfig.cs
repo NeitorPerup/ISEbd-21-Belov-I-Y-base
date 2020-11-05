@@ -14,13 +14,19 @@ namespace FormShip
     {
         Vehicle ship = null;
 
-        private event ShipDelegate eventAddShip;
-
-        public event Action<Vehicle> eventActionAddShip;
+        private event Action<Vehicle> eventActionAddShip;
 
         public FormShipConfig()
         {
             InitializeComponent();
+            panelWhite.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelYellow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelFuchsia.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelBlack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelGreen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelOrange.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            panelRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
 
@@ -36,15 +42,15 @@ namespace FormShip
             }
         }
 
-        public void AddEvent(ShipDelegate ev)
+        public void AddEvent(Action<Vehicle> ev)
         {
-            if (eventAddShip == null)
+            if (eventActionAddShip == null)
             {
-                eventAddShip = new ShipDelegate(ev);
+                eventActionAddShip = new Action<Vehicle>(ev);
             }
             else
             {
-                eventAddShip += ev;
+                eventActionAddShip += ev;
             }
         }
 
@@ -87,12 +93,12 @@ namespace FormShip
 
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor.Name, DragDropEffects.Move | DragDropEffects.Copy);
+            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
 
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Text))
+            if (e.Data.GetDataPresent(typeof(Color)))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -104,8 +110,7 @@ namespace FormShip
 
         private void labelBaseColor_DragDrop(object sender, DragEventArgs e)
         {
-            var shipColor = e.Data.GetData(DataFormats.Text).ToString();
-            ship.SetMainColor(Color.FromName(shipColor));
+            ship.SetMainColor((Color)e.Data.GetData(typeof(Color)));
             DrawShip();
         }
 
@@ -113,15 +118,13 @@ namespace FormShip
         {
             if (ship is Warship)
             {
-                var shipColor = e.Data.GetData(DataFormats.Text).ToString();
-                (ship as Warship).SetDopColor(Color.FromName(shipColor));
+                (ship as Warship).SetDopColor((Color)(e.Data.GetData(typeof(Color))));
                 DrawShip();
             }
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            //eventAddShip?.Invoke(ship);
             eventActionAddShip.Invoke(ship);
             Close();
         }

@@ -146,8 +146,7 @@ namespace FormShip
         private void ButtonAddShip_Click(object sender, EventArgs e)
         {
             var formShipConfig = new FormShipConfig();
-            //formShipConfig.AddEvent(AddShip);
-            formShipConfig.eventActionAddShip += AddShip;
+            formShipConfig.AddEvent(AddShip);
             formShipConfig.Show();
         }
 
