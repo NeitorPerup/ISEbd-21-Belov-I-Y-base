@@ -44,12 +44,7 @@
             this.groupBoxColors = new System.Windows.Forms.GroupBox();
             this.panelWhite = new System.Windows.Forms.Panel();
             this.panelYellow = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.panelFuchsia = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panelBlack = new System.Windows.Forms.Panel();
             this.panelGreen = new System.Windows.Forms.Panel();
             this.panelBlue = new System.Windows.Forms.Panel();
@@ -68,7 +63,6 @@
             this.groupBoxColors.SuspendLayout();
             this.panelYellow.SuspendLayout();
             this.panelFuchsia.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBoxShipType
@@ -265,67 +259,26 @@
             this.panelWhite.Name = "panelWhite";
             this.panelWhite.Size = new System.Drawing.Size(41, 37);
             this.panelWhite.TabIndex = 5;
-            
             // 
             // panelYellow
             // 
             this.panelYellow.BackColor = System.Drawing.Color.Yellow;
             this.panelYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelYellow.Controls.Add(this.panel12);
             this.panelYellow.Location = new System.Drawing.Point(64, 121);
             this.panelYellow.Name = "panelYellow";
             this.panelYellow.Size = new System.Drawing.Size(41, 37);
             this.panelYellow.TabIndex = 7;
 
             // 
-            // panel12
-            // 
-            this.panel12.Location = new System.Drawing.Point(171, 39);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(200, 100);
-            this.panel12.TabIndex = 8;
-            // 
             // panelFuchsia
             // 
             this.panelFuchsia.BackColor = System.Drawing.Color.Fuchsia;
             this.panelFuchsia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelFuchsia.Controls.Add(this.panel11);
-            this.panelFuchsia.Controls.Add(this.panel9);
-            this.panelFuchsia.Controls.Add(this.panel10);
             this.panelFuchsia.Location = new System.Drawing.Point(6, 121);
             this.panelFuchsia.Name = "panelFuchsia";
             this.panelFuchsia.Size = new System.Drawing.Size(41, 37);
             this.panelFuchsia.TabIndex = 8;
-            
-            // 
-            // panel11
-            // 
-            this.panel11.Location = new System.Drawing.Point(-31, 86);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(200, 100);
-            this.panel11.TabIndex = 7;
-            // 
-            // panel9
-            // 
-            this.panel9.Location = new System.Drawing.Point(174, 29);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(200, 100);
-            this.panel9.TabIndex = 6;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.panel5);
-            this.panel10.Location = new System.Drawing.Point(-78, -45);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(41, 37);
-            this.panel10.TabIndex = 5;
-            // 
-            // panel5
-            // 
-            this.panel5.Location = new System.Drawing.Point(109, 48);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(41, 37);
-            this.panel5.TabIndex = 5;
+
             // 
             // panelBlack
             // 
@@ -335,7 +288,6 @@
             this.panelBlack.Name = "panelBlack";
             this.panelBlack.Size = new System.Drawing.Size(41, 37);
             this.panelBlack.TabIndex = 5;
-            
             // 
             // panelGreen
             // 
@@ -345,7 +297,6 @@
             this.panelGreen.Name = "panelGreen";
             this.panelGreen.Size = new System.Drawing.Size(41, 37);
             this.panelGreen.TabIndex = 6;
-           
             // 
             // panelBlue
             // 
@@ -355,7 +306,6 @@
             this.panelBlue.Name = "panelBlue";
             this.panelBlue.Size = new System.Drawing.Size(41, 37);
             this.panelBlue.TabIndex = 4;
-            
             // 
             // panelOrange
             // 
@@ -365,7 +315,6 @@
             this.panelOrange.Name = "panelOrange";
             this.panelOrange.Size = new System.Drawing.Size(41, 37);
             this.panelOrange.TabIndex = 3;
-            
             // 
             // panelRed
             // 
@@ -375,7 +324,6 @@
             this.panelRed.Name = "panelRed";
             this.panelRed.Size = new System.Drawing.Size(41, 37);
             this.panelRed.TabIndex = 2;
-            
             // 
             // labelDopColor
             // 
@@ -443,7 +391,6 @@
             this.groupBoxColors.ResumeLayout(false);
             this.panelYellow.ResumeLayout(false);
             this.panelFuchsia.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -466,12 +413,7 @@
         private System.Windows.Forms.GroupBox groupBoxColors;
         private System.Windows.Forms.Panel panelWhite;
         private System.Windows.Forms.Panel panelYellow;
-        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panelFuchsia;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panelBlack;
         private System.Windows.Forms.Panel panelGreen;
         private System.Windows.Forms.Panel panelBlue;

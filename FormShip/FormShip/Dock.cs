@@ -52,6 +52,15 @@ namespace FormShip
             return ship;
         }
 
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
+        }
+
         public void Draw(Graphics g)
         {
             DrawMarking(g);
