@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using NLog;
 
 namespace FormShip
 {
     class DockCollection
     {
         readonly Dictionary<string, Dock<Vehicle>> dockStages;
+
+        private readonly Logger logger;
 
         public List<string> Keys => dockStages.Keys.ToList();
 
@@ -21,6 +24,7 @@ namespace FormShip
         public DockCollection(int pictureWidth, int pictureHeight)
         {
             dockStages = new Dictionary<string, Dock<Vehicle>>();
+            logger = LogManager.GetCurrentClassLogger();
             this.pictureWidth = pictureWidth;
             this.pictureHeight = pictureHeight;
         }
@@ -71,15 +75,12 @@ namespace FormShip
 
                     foreach (var level in dockStages)
                     {
-                        //Начинаем парковку
                         sw.WriteLine($"Dock{separator}{level.Key}");
                         ITransport ship = null;
                         for (int i = 0; (ship = level.Value.GetNext(i)) != null; i++)
                         {
                             if (ship != null)
                             {
-                                //если место не пустое
-                                //Записываем тип машины
                                 if (ship.GetType().Name == "Ship")
                                 {
                                     sw.Write($"Ship{separator}");
@@ -104,7 +105,8 @@ namespace FormShip
         {
             if (!File.Exists(filename))
             {
-                return false;
+                logger.Warn("Выбран неверный файл для загрузки!");
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
             {
@@ -117,7 +119,8 @@ namespace FormShip
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    logger.Warn("Выбран неверный формат файла!");
+                    throw new FormatException("Неверный формат файла");
                 }
 
                 line = sr.ReadLine();
@@ -143,7 +146,8 @@ namespace FormShip
                         var result = dockStages[key] + ship;
                         if (!result)
                         {
-                            return false;
+                            logger.Warn("При загрузке файла вызвано исключение DockOccupiedPlaceException");
+                            throw new DockOccupiedPlaceException();
                         }
                         line = sr.ReadLine();
                     }
