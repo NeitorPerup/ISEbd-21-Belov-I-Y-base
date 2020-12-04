@@ -61,7 +61,7 @@ namespace FormShip
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -98,14 +98,12 @@ namespace FormShip
                     }
                 }
             }
-            return true;
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                logger.Warn("Выбран неверный файл для загрузки!");
                 throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
@@ -119,7 +117,6 @@ namespace FormShip
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    logger.Warn("Выбран неверный формат файла!");
                     throw new FormatException("Неверный формат файла");
                 }
 
@@ -146,14 +143,12 @@ namespace FormShip
                         var result = dockStages[key] + ship;
                         if (!result)
                         {
-                            logger.Warn("При загрузке файла вызвано исключение DockOccupiedPlaceException");
-                            throw new DockOccupiedPlaceException();
+                            throw new NullReferenceException();
                         }
                         line = sr.ReadLine();
                     }
                 }
             }
-            return true; 
         }
     }
 }

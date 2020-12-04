@@ -134,11 +134,11 @@ namespace FormShip
                     var ship = dockCollection[listBoxDock.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBox.Text);
                     if (ship != null)
                     {
+                        logger.Info($"Изъят корабль {ship} с места { maskedTextBox.Text}");
                         FormShip form = new FormShip();
                         form.SetShip(ship);
                         form.ShowDialog();
-                    }
-                    logger.Info($"Изъят корабль {ship} с места { maskedTextBox.Text}");
+                    }                    
                     Draw();
                 }
                 catch (DockNotFoundException ex)
@@ -232,9 +232,9 @@ namespace FormShip
                     ReloadLevels();
                     Draw();
                 }
-                catch (DockOccupiedPlaceException ex)
+                catch (NullReferenceException ex)
                 {
-                    logger.Warn("Вызвана ошибка DockOccupiedPlaceException");
+                    logger.Warn("Вызвана ошибка NullReferenceException");
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
