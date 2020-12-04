@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using NLog;
 
 namespace FormShip
 {
     public class Dock<T> where T : class, ITransport
     {
         private readonly List<T> _places;
-
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private readonly int _maxCount;
 
@@ -38,7 +35,6 @@ namespace FormShip
         {
             if (d._places.Count >= d._maxCount)
             {
-                d.logger.Warn("Вызвано исключение DockOverflowException");
                 throw new DockOverflowException();
             }
             d._places.Add(ship);
@@ -49,7 +45,6 @@ namespace FormShip
         {
             if (index <= -1 || index >= d._places.Count)
             {
-                d.logger.Warn("Вызвано исключение DockNotFoundException");
                 throw new DockNotFoundException(index);
             }
             T ship = d._places[index];

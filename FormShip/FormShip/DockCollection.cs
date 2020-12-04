@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using NLog;
 
 namespace FormShip
 {
     class DockCollection
     {
         readonly Dictionary<string, Dock<Vehicle>> dockStages;
-
-        private readonly Logger logger;
 
         public List<string> Keys => dockStages.Keys.ToList();
 
@@ -24,7 +21,6 @@ namespace FormShip
         public DockCollection(int pictureWidth, int pictureHeight)
         {
             dockStages = new Dictionary<string, Dock<Vehicle>>();
-            logger = LogManager.GetCurrentClassLogger();
             this.pictureWidth = pictureWidth;
             this.pictureHeight = pictureHeight;
         }
