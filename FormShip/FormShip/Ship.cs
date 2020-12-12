@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FormShip
 {
-    public class Ship : Vehicle
+    public class Ship : Vehicle, IEquatable<Ship>
     {
         protected readonly int shipWidth = 90;
 
@@ -123,6 +123,47 @@ namespace FormShip
             PointF[] tubePoints = {new PointF(_startPosX + 115, _startPosY + 5), new PointF(_startPosX + 108, _startPosY - 12),
                              new PointF(_startPosX + 126, _startPosY - 18), new PointF(_startPosX + 133, _startPosY + 5) };
             g.FillPolygon(brMainColor, tubePoints);
+        }
+
+        public bool Equals(Ship other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Ship shipObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(shipObj);
+            }
         }
     }
 }

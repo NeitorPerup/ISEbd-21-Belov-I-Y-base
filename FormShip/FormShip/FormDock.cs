@@ -190,6 +190,11 @@ namespace FormShip
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
+                catch (DockAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     logger.Warn("Вызвана неизвестная ошибка");
@@ -250,6 +255,16 @@ namespace FormShip
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void ButtonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxDock.SelectedIndex > -1)
+            {
+                dockCollection[listBoxDock.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

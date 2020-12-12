@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace FormShip
 {
-    public class Warship : Ship
+    public class Warship : Ship, IEquatable<Warship>
     {
         public Color DopColor { private set; get; }
 
@@ -80,6 +80,62 @@ namespace FormShip
                                            new PointF(_startPosX + 45, _startPosY - 7), new PointF(_startPosX + 40, _startPosY + 5) };
                 g.FillPolygon(brDopColor, cannon2Points);
                 g.FillRectangle(brDopColor, _startPosX + 24, _startPosY - 4, 20, 4);
+            }
+        }
+        public bool Equals(Warship other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Antenna != other.Antenna)
+            {
+                return false;
+            }
+            if (Cannon != other.Cannon)
+            {
+                return false;
+            }
+            if (DopBuilding != other.DopBuilding)
+            {
+                return false;
+            }
+            return true;
+            
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Warship shipObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(shipObj);
             }
         }
     }
