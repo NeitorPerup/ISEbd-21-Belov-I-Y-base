@@ -17,6 +17,10 @@ namespace FormShip
 
         public bool DopBuilding { private set; get; }
 
+        public new LinkedList<Object> objectProperties = new LinkedList<Object>();
+
+        private int currentIndex = 0;
+
         public Warship(int maxSpeed, float weight, Color mainColor, Color dopColor,
             bool antenna, bool cannon, bool dopBuilding) :
             base(maxSpeed, weight, mainColor, 100, 60)
@@ -136,6 +140,29 @@ namespace FormShip
             else
             {
                 return Equals(shipObj);
+            }
+        }
+
+        public new bool hasNext()
+        {
+            return (currentIndex++ < 7);
+        }
+
+        public new String next()
+        {
+            return objectProperties.Find(currentIndex).ToString();
+        }
+
+        public new void remove()
+        {
+            objectProperties.Remove(currentIndex);
+        }
+
+        public new IEnumerator<Object> iterator()
+        {
+            foreach (var i in objectProperties)
+            {
+                yield return i;
             }
         }
     }
