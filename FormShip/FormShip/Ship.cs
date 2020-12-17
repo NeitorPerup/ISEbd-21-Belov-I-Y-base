@@ -9,15 +9,11 @@ namespace FormShip
 {
     public class Ship : Vehicle, IEquatable<Ship>
     {
-        public LinkedList<Object> objectProperties = new LinkedList<Object>();
-
         protected readonly int shipWidth = 90;
 
         protected readonly int shipHeight = 50;
 
         protected readonly char separator = ';';
-
-        private int currentIndex = 0;
 
         public Ship(int maxSpeed, float weight, Color mainColor)
         {
@@ -167,29 +163,6 @@ namespace FormShip
             else
             {
                 return Equals(shipObj);
-            }
-        }
-
-        public bool hasNext()
-        {
-            return (currentIndex++ < 3);
-        }
-
-        public String next()
-        {
-            return objectProperties.Find(currentIndex).ToString();
-        }
-
-        public void remove()
-        {
-            objectProperties.Remove(currentIndex);
-        }
-
-        public IEnumerator<Object> iterator()
-        {
-            foreach (var i in objectProperties)
-            {
-                yield return i;
             }
         }
     }
