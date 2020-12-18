@@ -72,24 +72,18 @@ namespace FormShip
                     foreach (var level in dockStages)
                     {
                         sw.WriteLine($"Dock{separator}{level.Key}");
-                        ITransport ship = null;
-                        for (int i = 0; (ship = level.Value.GetNext(i)) != null; i++)
+                        foreach (ITransport ship in level.Value)
                         {
-                            if (ship != null)
+                            if (ship.GetType().Name == "Ship")
                             {
-                                if (ship.GetType().Name == "Ship")
-                                {
-                                    sw.Write($"Ship{separator}");
-
-                                }
-                                if (ship.GetType().Name == "Warship")
-                                {
-                                    sw.Write($"Warship{separator}");
-                                }
-                                //Записываемые параметры
-                                sw.WriteLine(ship);
-
+                                sw.Write($"Ship{separator}");
                             }
+                            if (ship.GetType().Name == "Warship")
+                            {
+                                sw.Write($"Warship{separator}");
+                            }
+                            //Записываемые параметры
+                            sw.WriteLine(ship);
                         }
                     }
                 }

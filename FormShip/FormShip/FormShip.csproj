@@ -75,6 +75,8 @@
       <DependentUpon>FormShipConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="ITransport.cs" />
+    <Compile Include="DockAlreadyHaveException.cs" />
+    <Compile Include="ShipComparer.cs" />
     <Compile Include="Warship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
